@@ -484,11 +484,11 @@ public class Client extends AbstractClient implements IClient {
           System.exit(1);
         }
         _logger =
-            new BatfishLogger(_settings.getLogLevel(), false, _settings.getLogFile(), false, false);
+            new BatfishLogger(_settings.getLogLevel(), true, _settings.getLogFile(), false, false);
         break;
       case gendatamodel:
         _logger =
-            new BatfishLogger(_settings.getLogLevel(), false, _settings.getLogFile(), false, false);
+            new BatfishLogger(_settings.getLogLevel(), true, _settings.getLogFile(), false, false);
         break;
       case genquestions:
         if (_settings.getQuestionsDir() == null) {
@@ -498,7 +498,7 @@ public class Client extends AbstractClient implements IClient {
           System.exit(1);
         }
         _logger =
-            new BatfishLogger(_settings.getLogLevel(), false, _settings.getLogFile(), false, false);
+            new BatfishLogger(_settings.getLogLevel(), true, _settings.getLogFile(), false, false);
         break;
       case interactive:
         try {
