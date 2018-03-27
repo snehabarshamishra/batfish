@@ -47,6 +47,7 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -456,8 +457,15 @@ public class CommonUtil {
   }
 
   public static void deleteDirectory(Path path) {
+    if (!path.toFile().exists()) {
+      return;
+    }
+
     try {
-      FileUtils.deleteDirectory(path.toFile());
+      Path tempPath =
+          path.toAbsolutePath().getParent().resolve(".tmp_" + UUID.randomUUID().toString());
+      FileUtils.moveDirectory(path.toFile(), tempPath.toFile());
+      FileUtils.deleteDirectory(tempPath.toFile());
     } catch (IOException | NullPointerException e) {
       throw new BatfishException("Could not delete directory: " + path, e);
     }

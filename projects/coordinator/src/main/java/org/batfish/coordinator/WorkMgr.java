@@ -1302,6 +1302,7 @@ public class WorkMgr extends AbstractCoordinator {
         CommonUtil.getSubdirectories(testrigsDir)
             .stream()
             .map(dir -> dir.getFileName().toString())
+            .filter(name -> !name.startsWith(".tmp"))
             .sorted(
                 (t1, t2) -> { // reverse sorting by creation-time, name
                   String key1 =
